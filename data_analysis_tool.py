@@ -1,8 +1,8 @@
-# Import necessary libraries
+# Author: Miguel Ibarra 【=◈︿◈=】
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import seaborn as sns
 import time
 
 # Read the CSV file
@@ -30,7 +30,7 @@ def get_user_input():
 # Add a progress bar
 def show_progress_bar():
     print('Processing', end='')
-    for _ in range(3):
+    for _ in range(5):
         print('.', end='', flush=True)
         time.sleep(1)
     print('')
@@ -47,9 +47,7 @@ def display_menu():
     print('6. Add user input')
     print('7. Save results')
     print('8. Get help')
-    print('9. Plot a boxplot of age by gender')
-    print('10. Plot a violin plot of age by country')
-    print('11. Quit')
+    print('9. Quit')
 
 def main(df):
     while True:
@@ -58,11 +56,9 @@ def main(df):
 
         if choice == '1':
             mean_age = np.mean(df['age'])
-            show_progress_bar()
             print('The mean age is:', mean_age)
         elif choice == '2':
             std_age = np.std(df['age'])
-            show_progress_bar()
             print('The standard deviation of age is:', std_age)
         elif choice == '3':
             plt.hist(df['age'], bins=10)
@@ -73,13 +69,11 @@ def main(df):
         elif choice == '4':
             male_count = df[df['gender'] == 'Male'].shape[0]
             female_count = df[df['gender'] == 'Female'].shape[0]
-            show_progress_bar()
             print('The number of males is:', male_count)
             print('The number of females is:', female_count)
         elif choice == '5':
             male_percentage = df[df['gender'] == 'Male'].shape[0] / df.shape[0]
             female_percentage = df[df['gender'] == 'Female'].shape[0] / df.shape[0]
-            show_progress_bar()
             print('The percentage of males is:', male_percentage)
             print('The percentage of females is:', female_percentage)
         elif choice == '6':
@@ -87,35 +81,21 @@ def main(df):
             # Create a new DataFrame row with user input
             new_row = pd.DataFrame([[id, name, age, gender, country]], columns=['id', 'name', 'age', 'gender', 'country'])
             df = pd.concat([df, new_row], ignore_index=True)
-            show_progress_bar()
             print('User input added successfully.')
         elif choice == '7':
             save_choice = input('Enter the file name to save the results: ')
             df.to_csv(save_choice, index=False)
-            show_progress_bar()
             print('Results saved successfully.')
         elif choice == '8':
-          show_progress_bar()
-          print('This program provides basic data analysis features.')
-          print('You can calculate the mean and standard deviation of age, plot the age distribution,')
-          print('count the number of males and females, calculate their percentages, add user input,')
-          print('save the results or quit the program.')
-          print("You can also visualize data using boxplots and violin plots.")
+            print('This program provides basic data analysis features.')
+            print('You can calculate the mean and standard deviation of age, plot the age distribution,')
+            print('count the number of males and females, calculate their percentages, add user input,')
+            print('save the results, or quit the program.')
         elif choice == '9':
-          sns.boxplot(x='gender', y='age', data=df)
-          plt.title("Boxplot of Age by Gender")
-          plt.show()
-        elif choice == '10':
-          sns.violinplot(x='country', y='age', data=df)
-          plt.title("Violin Plot of Age by Country")
-          plt.show()
-        elif choice == '11':
-          show_progress_bar()
-          print("Thank you for using the Data Analysis Tool. Goodbye!")
-          break
+            print('Thank you for using the Data Analysis Tool. Goodbye!')
+            break
         else:
-          show_progress_bar()
-          print("Invalid choice. Please try again.")
+            print('Invalid choice. Please try again.')
 
 # Run the program
 if __name__ == '__main__':
