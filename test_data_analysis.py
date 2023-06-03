@@ -104,5 +104,73 @@ def test_plot_violin_plot_age_by_country():
     # Clean up the temporary file
     os.remove(temp_file)
 
+def test_plot_income_by_education_level():
+    # Create a temporary file for the plot
+    temp_file = 'barplot_income_by_education.png'
+
+    df = pd.DataFrame({
+        'education': ['Bachelor\'s Degree', 'Master\'s Degree', 'Bachelor\'s Degree', 'Associate Degree'],
+        'income': [50000, 60000, 45000, 55000]
+    })
+
+    data_analysis_tool.plot_income_by_education_level(df, temp_file)
+
+    # Check if the file was created
+    assert os.path.isfile(temp_file)
+
+    # Clean up the temporary file
+    os.remove(temp_file)
+
+def test_plot_income_by_occupation():
+    # Create a temporary file for the plot
+    temp_file = 'barplot_income_by_occupation.png'
+
+    df = pd.DataFrame({
+        'occupation': ['Engineer', 'Manager', 'Doctor', 'Teacher'],
+        'income': [50000, 60000, 70000, 55000]
+    })
+
+    data_analysis_tool.plot_income_by_occupation(df, temp_file)
+
+    # Check if the file was created
+    assert os.path.isfile(temp_file)
+
+    # Clean up the temporary file
+    os.remove(temp_file)
+
+def test_plot_income_by_marital_status():
+    # Create a temporary file for the plot
+    temp_file = 'barplot_income_by_marital_status.png'
+
+    df = pd.DataFrame({
+        'marital_status': ['Single', 'Married', 'Married', 'Single'],
+        'income': [50000, 60000, 70000, 55000]
+    })
+
+    data_analysis_tool.plot_income_by_marital_status(df, temp_file)
+
+    # Check if the file was created
+    assert os.path.isfile(temp_file)
+
+    # Clean up the temporary file
+    os.remove(temp_file)
+
+def test_plot_income_by_number_of_children():
+    # Create a temporary file for the plot
+    temp_file = 'barplot_income_by_children.png'
+
+    df = pd.DataFrame({
+        'children': [0, 2, 1, 3],
+        'income': [50000, 60000, 70000, 55000]
+    })
+
+    data_analysis_tool.plot_income_by_number_of_children(df, temp_file)
+
+    # Check if the file was created
+    assert os.path.isfile(temp_file)
+
+    # Clean up the temporary file
+    os.remove(temp_file)
+
 if __name__ == '__main__':
     pytest.main()
